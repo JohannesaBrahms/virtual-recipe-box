@@ -25,8 +25,9 @@ const CreateRecipe = () => {
       alert('Success! You created a new recipe!');
       setTitle('');
       setDate('');
+      router.push('/recipes');
     } else {
-      alert('Something went wrong :(');
+      alert('Something went wrong when creating a recipe');
     }
   };
 
