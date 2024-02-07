@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 const CreateRecipe = () => {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
+
   const router = useRouter();
 
   const handlePostCreation = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -41,6 +42,7 @@ const CreateRecipe = () => {
         <input type="text" value={date} onChange={(e) => setDate(e.target.value)} />
         <button type="submit">Submit</button>
       </form>
+      <button onClick={() => router.push('/recipes')}>Go To Recipes</button>
     </div>
   );
 };
