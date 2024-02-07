@@ -1,0 +1,16 @@
+import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+export async function POST(request: Request) {
+  const { title, date } = await request.json(); // destructure body
+
+  const recipe = await prisma.recipe.create({
+    data: {
+      title,
+      date,
+    },
+  });
+  return NextResponse.json(recipe, { status: 201 });
+}
