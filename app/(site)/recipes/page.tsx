@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react';
 const RecipesPage = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
+  const router = useRouter();
+
   useEffect(() => {
     const getRecipes = async () => {
       const response = await fetch('/api/recipes');
@@ -37,6 +39,9 @@ const RecipesPage = () => {
           </div>
         ))}
       </ul>
+      <div>
+        <button onClick={() => router.push('/create-recipe')}>Create New Recipe</button>
+      </div>
     </div>
   );
 };
