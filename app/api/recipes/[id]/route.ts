@@ -9,7 +9,6 @@ export async function GET(request: Request, route: { params: { id: string } }) {
       id: route.params.id,
     },
   });
-  console.log(recipe);
 
   return NextResponse.json(recipe, { status: 200 });
 }

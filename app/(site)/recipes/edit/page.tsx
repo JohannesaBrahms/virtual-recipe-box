@@ -16,7 +16,6 @@ const EditPage = () => {
   useEffect(() => {
     const getRecipe = async () => {
       const response = await fetch(`/api/recipes/${recipeId}`);
-      console.log(response);
       const data: Recipe = await response.json();
       setRecipe(data);
     };

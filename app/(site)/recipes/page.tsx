@@ -40,7 +40,7 @@ const RecipesPage = () => {
         ))}
       </ul>
       <div>
-        <button onClick={() => router.push('/create-recipe')}>Create New Recipe</button>
+        <button onClick={() => router.push('/recipes/create')}>Create New Recipe</button>
       </div>
     </div>
   );

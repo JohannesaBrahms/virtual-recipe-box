@@ -14,7 +14,7 @@ const CreateRecipe = () => {
 
     event.preventDefault(); //don't refresh
 
-    const response = await fetch('/api/create-recipe', {
+    const response = await fetch('/api/recipes/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,6 +35,7 @@ const CreateRecipe = () => {
   return (
     <div>
       <h1>Create New Recipe</h1>
+      {/* <CreateRecipeForm onSubmit={handlePostCreation}/> */}
       <form onSubmit={handlePostCreation}>
         <label>Recipe Title</label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
