@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <h1>Virtual Recipe Box</h1>
-      <Link href="/create-recipe">Create New Recipe</Link>
+      <Link href="/recipes/create">Create New Recipe</Link>
       <Link href="/recipes">Browse Recipes</Link>
     </main>
   );

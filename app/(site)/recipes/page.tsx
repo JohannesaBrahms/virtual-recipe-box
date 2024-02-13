@@ -21,8 +21,8 @@ const RecipesPage = () => {
     // TODO
   };
 
-  const handleEdit = async (recipeId: string) => {
-    // TODO
+  const handleEdit = async (recipe: Recipe) => {
+    router.push(`/recipes/edit?id=${recipe.id}`);
   };
 
   return (
@@ -35,12 +35,12 @@ const RecipesPage = () => {
             <li>{recipe.title}</li>
             <li>{recipe.date}</li>
             <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-            <button onClick={() => handleEdit(recipe.id)}>Edit Recipe</button>
+            <button onClick={() => handleEdit(recipe)}>Edit Recipe</button>
           </div>
         ))}
       </ul>
       <div>
-        <button onClick={() => router.push('/create-recipe')}>Create New Recipe</button>
+        <button onClick={() => router.push('/recipes/create')}>Create New Recipe</button>
       </div>
     </div>
   );

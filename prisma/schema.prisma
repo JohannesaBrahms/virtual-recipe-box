@@ -10,8 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  name    String   @default("recipebox")
+  email   String   @default("office@recipebox.com")
+  recipes Recipe[]
+}
+
 model Recipe {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  date  String
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  author      Account @relation(fields: [authorId], references: [id])
+  authorId    String  @db.ObjectId
+  title       String
+  description String
+  difficulty  String
+  date        String
+  editDate    String?
 }
