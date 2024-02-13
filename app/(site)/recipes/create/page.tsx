@@ -1,4 +1,4 @@
-import RecipeForm from './RecipeFormActions';
+import RecipeForm from './RecipeForm';
 import Link from 'next/link';
 
 const CreateRecipe = () => {
