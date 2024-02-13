@@ -1,14 +1,11 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import RecipeForm from '../create/RecipeFormActions';
 
-const EditPage = () => {
-  const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
+const EditRecipe = () => {
   const [recipe, setRecipe] = useState<Recipe | undefined>(undefined);
-
-  const router = useRouter();
 
   const searchParams = useSearchParams();
   const recipeId = searchParams.get('id');
@@ -25,18 +22,10 @@ const EditPage = () => {
   return (
     <div>
       <h1>Edit Recipe info of:</h1>
-      {recipe ? (
-        <>
-          <p>{recipe.title}</p>
-          <p>{recipe.date}</p>
-        </>
-      ) : (
-        <p>loading...</p>
-      )}
-      {/* TODO Form */}
+      {recipe ? <RecipeForm recipe={recipe} /> : <p>loading...</p>}
       <form />
     </div>
   );
 };
 
-export default EditPage;
+export default EditRecipe;
