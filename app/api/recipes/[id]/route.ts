@@ -12,7 +12,3 @@ export async function GET(request: Request, route: { params: { id: string } }) {
 
   return NextResponse.json(recipe, { status: 200 });
 }
-
-export async function PATCH(request: Request) {
-  //TODO
-}
