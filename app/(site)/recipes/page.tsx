@@ -1,5 +1,6 @@
 'use client';
 
+import RecipesList from '@/app/components/recipes-list';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
@@ -17,28 +18,10 @@ const RecipesPage = () => {
     getRecipes();
   }, []);
 
-  const handleDelete = async (recipeId: string) => {
-    // TODO
-  };
-
-  const handleEdit = async (recipe: Recipe) => {
-    router.push(`/recipes/edit?id=${recipe.id}`);
-  };
-
   return (
     <div>
       <h1>Recipes List</h1>
-      <ul>
-        {recipes.length === 0 && <p>No recipes to show</p>}
-        {recipes.map((recipe: Recipe, index: number) => (
-          <div key={recipe.id}>
-            <li>{recipe.title}</li>
-            <li>{recipe.date}</li>
-            <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-            <button onClick={() => handleEdit(recipe)}>Edit Recipe</button>
-          </div>
-        ))}
-      </ul>
+      <RecipesList recipes={recipes} />
       <div>
         <button onClick={() => router.push('/recipes/create')}>Create New Recipe</button>
       </div>
