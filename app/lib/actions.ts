@@ -1,12 +1,10 @@
 'use server';
 
-import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { z } from 'zod';
-
-const prisma = new PrismaClient();
+import { prisma } from './db';
 
 const FormSchema = z.object({
   id: z.string(),
