@@ -1,6 +1,7 @@
 'use client';
 
 import RecipesList from '@/app/components/recipes-list';
+import Search from '@/app/components/search';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
@@ -20,6 +21,7 @@ const RecipesPage = () => {
 
   return (
     <div>
+      <Search placeholder="Search recipes..." />
       <h1>Recipes List</h1>
       <RecipesList recipes={recipes} />
       <div>
