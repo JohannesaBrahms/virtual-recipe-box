@@ -17,7 +17,7 @@ export default function RecipeForm({ recipe }: { recipe?: Recipe }) {
       <label aria-label="description" htmlFor="description" aria-placeholder="Description...">
         Description
       </label>
-      <input required name="description" defaultValue={recipe?.description} />
+      <textarea required name="description" defaultValue={recipe?.description} />
       {/* Difficulty */}
       <label aria-label="difficulty" htmlFor="difficulty">
         Difficulty
