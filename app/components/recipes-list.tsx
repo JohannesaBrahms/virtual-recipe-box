@@ -1,6 +1,8 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 
-export default function RecipesList({ recipes, query }: { recipes: Recipe[]; query?: String }) {
+export default function RecipesList({ recipes, query }: { recipes: Recipe[]; query?: string }) {
   const router = useRouter();
 
   const handleDelete = async (recipe: Recipe) => {

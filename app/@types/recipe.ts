@@ -2,11 +2,12 @@ type Difficulty = 'beginner' | 'intermediate' | 'pro';
 
 type Recipe = {
   id: string;
-  accountId: string;
+  authorId: string;
   title: string;
   description: string;
   difficulty: Difficulty;
   date: string;
+  editDate?: string;
   ingredients?: Ingredient[];
 };
 

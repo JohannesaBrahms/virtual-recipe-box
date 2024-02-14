@@ -101,6 +101,27 @@ export async function updateRecipe(id: string, formData: FormData) {
   redirect('/recipes');
 }
 
+export async function fetchRecipes(query?: string) {
+  return await prisma.recipe.findMany({
+    where: {
+      OR: [
+        {
+          title: {
+            contains: query,
+            mode: 'insensitive',
+          },
+        },
+        {
+          description: {
+            contains: query,
+            mode: 'insensitive',
+          },
+        },
+      ],
+    },
+  });
+}
+
 // export async function deleteRecipe(id: string) {
 //   try {
 //     await sql`DELETE FROM invoices WHERE id = ${id}`;
