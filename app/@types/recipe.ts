@@ -1,4 +1,8 @@
-type Difficulty = 'beginner' | 'intermediate' | 'pro';
+enum Difficulty {
+  beginner = 'beginner',
+  intermediate = 'intermediate',
+  pro = 'pro',
+}
 
 type Recipe = {
   id: string;
