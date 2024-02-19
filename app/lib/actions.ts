@@ -121,13 +121,3 @@ export async function fetchRecipes(query?: string) {
     },
   });
 }
-
-// export async function deleteRecipe(id: string) {
-//   try {
-//     await sql`DELETE FROM invoices WHERE id = ${id}`;
-//     revalidatePath('/dashboard/invoices');
-//     return { message: 'Deleted Invoice.' };
-//   } catch (error) {
-//     return { message: 'Database Error: Failed to Delete Invoice.' };
-//   }
-// }
