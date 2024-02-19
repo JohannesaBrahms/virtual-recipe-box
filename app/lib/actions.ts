@@ -1,12 +1,10 @@
 'use server';
 
-import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { z } from 'zod';
-
-const prisma = new PrismaClient();
+import { prisma } from './db';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -103,12 +101,23 @@ export async function updateRecipe(id: string, formData: FormData) {
   redirect('/recipes');
 }
 
-// export async function deleteRecipe(id: string) {
-//   try {
-//     await sql`DELETE FROM invoices WHERE id = ${id}`;
-//     revalidatePath('/dashboard/invoices');
-//     return { message: 'Deleted Invoice.' };
-//   } catch (error) {
-//     return { message: 'Database Error: Failed to Delete Invoice.' };
-//   }
-// }
+export async function fetchRecipes(query?: string) {
+  return await prisma.recipe.findMany({
+    where: {
+      OR: [
+        {
+          title: {
+            contains: query,
+            mode: 'insensitive',
+          },
+        },
+        {
+          description: {
+            contains: query,
+            mode: 'insensitive',
+          },
+        },
+      ],
+    },
+  });
+}

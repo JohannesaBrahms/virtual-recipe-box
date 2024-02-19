@@ -1,7 +1,5 @@
+import { prisma } from '@/app/lib/db';
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
 
 /**
  * On its way to deprecation in favor of [server actions] in `@lib/actions.ts`

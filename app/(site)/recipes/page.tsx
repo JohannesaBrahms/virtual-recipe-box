@@ -1,49 +1,25 @@
-'use client';
+import RecipesList from '@/app/components/recipes-list';
+import Search from '@/app/components/search';
+import Link from 'next/link';
+import { fetchRecipes } from '@/app/lib/actions';
 
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
-
-const RecipesPage = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    const getRecipes = async () => {
-      const response = await fetch('/api/recipes');
-      const data = await response.json();
-      setRecipes(data);
-    };
-    getRecipes();
-  }, []);
-
-  const handleDelete = async (recipeId: string) => {
-    // TODO
+export default async function RecipesPage({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    page?: string;
   };
-
-  const handleEdit = async (recipe: Recipe) => {
-    router.push(`/recipes/edit?id=${recipe.id}`);
-  };
+}) {
+  const query = searchParams?.query || '';
+  const recipes = await fetchRecipes(query);
 
   return (
     <div>
+      <Search placeholder="Search recipes..." />
       <h1>Recipes List</h1>
-      <ul>
-        {recipes.length === 0 && <p>No recipes to show</p>}
-        {recipes.map((recipe: Recipe, index: number) => (
-          <div key={recipe.id}>
-            <li>{recipe.title}</li>
-            <li>{recipe.date}</li>
-            <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-            <button onClick={() => handleEdit(recipe)}>Edit Recipe</button>
-          </div>
-        ))}
-      </ul>
-      <div>
-        <button onClick={() => router.push('/recipes/create')}>Create New Recipe</button>
-      </div>
+      <RecipesList recipes={recipes} />
+      <Link href="/recipes/create">Create New Recipe</Link>
     </div>
   );
-};
-
-export default RecipesPage;
+}
