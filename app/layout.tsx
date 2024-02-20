@@ -1,12 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from 'next';
+import './globals.css';
+import ThemeRegistry from '@/utils/ThemeRegistry';
 
 export const metadata: Metadata = {
-  title: "Virtual Recipe Box",
-  description: "Recipe Management and Sharing Platform",
+  title: 'Virtual Recipe Box',
+  description: 'Recipe Management and Sharing Platform',
 };
 
 export default function RootLayout({
@@ -16,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <ThemeRegistry options={{ key: 'mui-theme', prepend: true }}>{children}</ThemeRegistry>
+      </body>
     </html>
   );
 }
