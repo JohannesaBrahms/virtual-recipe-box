@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
+import { Experimental_CssVarsProvider as CssvarsProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/utils/theme';
 
@@ -18,12 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider theme={theme}>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <AppRouterCacheProvider options={{ key: 'mui', enableCssLayer: true }}>
+          <CssvarsProvider theme={theme} defaultMode="light">
+            {/* CssBaseline kickstarts an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             {children}
-          </ThemeProvider>
+          </CssvarsProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

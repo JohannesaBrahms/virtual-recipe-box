@@ -1,7 +1,7 @@
 'use client';
 
 import { Inter } from 'next/font/google';
-import { createTheme } from '@mui/material/styles';
+import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
 
 const inter = Inter({
   weight: ['300', '400', '500', '700'],
@@ -9,12 +9,20 @@ const inter = Inter({
   display: 'swap',
 });
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#fcba03',
+const theme = extendTheme({
+  cssVarPrefix: 'mui-poc',
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: '#fcba03',
+        },
+        mode: 'light',
+      },
     },
-    mode: 'light',
+    dark: {
+      palette: {},
+    },
   },
   typography: {
     fontFamily: inter.style.fontFamily,
