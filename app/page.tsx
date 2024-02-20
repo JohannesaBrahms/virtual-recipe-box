@@ -1,12 +1,17 @@
 import styles from './page.module.css';
-import Link from 'next/link';
+import Link from '@mui/material/Link';
+import NextLink from 'next/link';
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <h1>Virtual Recipe Box</h1>
-      <Link href="/recipes/create">Create New Recipe</Link>
-      <Link href="/recipes">Browse Recipes</Link>
+      <Link href="/recipes/create" component={NextLink}>
+        Create New Recipe
+      </Link>
+      <Link href="/recipes" component={NextLink}>
+        Browse Recipes
+      </Link>
     </main>
   );
 }

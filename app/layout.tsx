@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import ThemeRegistry from '@/utils/ThemeRegistry';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from '@/utils/theme';
 
 export const metadata: Metadata = {
   title: 'Virtual Recipe Box',
@@ -15,7 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry options={{ key: 'mui-theme', prepend: true }}>{children}</ThemeRegistry>
+        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

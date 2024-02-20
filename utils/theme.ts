@@ -1,3 +1,5 @@
+'use client';
+
 import { Inter } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
 
