@@ -8,7 +8,7 @@ const label = { inputProps: { 'aria-label': 'Color mode' } };
 
 // Material UI does not provide the toggle interface.
 // Example interface for toggling between modes.
-function ModeSwitcher() {
+export default function ModeSwitcher() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = useState(false);
 
@@ -37,5 +37,3 @@ function ModeSwitcher() {
     />
   );
 }
-
-export default ModeSwitcher;

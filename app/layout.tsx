@@ -4,7 +4,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Experimental_CssVarsProvider as CssvarsProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/utils/theme';
-import ModeSwitcher from './components/mode-switcher';
+import ModeSwitcher from './components/ModeSwitcher';
 
 export const metadata: Metadata = {
   title: 'Virtual Recipe Box',

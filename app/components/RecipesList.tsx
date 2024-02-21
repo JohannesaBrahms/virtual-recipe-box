@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { Recipe } from '../@types/recipe';
 
 export default function RecipesList({ recipes, query }: { recipes: Recipe[]; query?: string }) {
   const router = useRouter();

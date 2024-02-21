@@ -1,5 +1,5 @@
-import RecipesList from '@/app/components/recipes-list';
-import Search from '@/app/components/search';
+import RecipesList from '@/app/components/RecipesList';
+import Search from '@/app/components/Search';
 import Link from '@mui/material/Link';
 import NextLink from 'next/link';
 import { fetchRecipes } from '@/app/lib/actions';

@@ -7,7 +7,7 @@ enum Difficulty {
   pro = 'pro',
 }
 
-type Recipe = {
+export type Recipe = {
   id: string;
   authorId: string;
   title: string;
