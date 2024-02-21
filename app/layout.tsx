@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from 'next';
+import './globals.css';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { Experimental_CssVarsProvider as CssvarsProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from '@/utils/theme';
+import Header from './components/Header';
+import Copyright from './components/Copyright';
 
 export const metadata: Metadata = {
-  title: "Virtual Recipe Box",
-  description: "Recipe Management and Sharing Platform",
+  title: 'Virtual Recipe Box',
+  description: 'Recipe Management and Sharing Platform',
 };
 
 export default function RootLayout({
@@ -16,7 +19,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <AppRouterCacheProvider options={{ key: 'mui', enableCssLayer: true }}>
+          <CssvarsProvider theme={theme} defaultMode="light">
+            {/* CssBaseline kickstarts an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <Header />
+            {children}
+            <Copyright />
+          </CssvarsProvider>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
