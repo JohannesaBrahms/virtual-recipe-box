@@ -6,7 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/utils/theme';
 import Header from './components/Header';
 import Copyright from './components/Copyright';
-import ModeSwitcher from './components/ModeSwitcher';
 
 export const metadata: Metadata = {
   title: 'Virtual Recipe Box',

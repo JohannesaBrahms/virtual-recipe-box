@@ -1,4 +1,4 @@
-import { Divider, Link, Button as MuiButton } from '@mui/material';
+import { Divider, Button as MuiButton } from '@mui/material';
 import NextLink from 'next/link';
 import ModeSwitcher from './ModeSwitcher';
 
@@ -15,7 +15,7 @@ export default function Header() {
     <div>
       <ModeSwitcher />
       <Button href="/" label="Home" />
-      <Button href="/recipes" label="Browse Recipes" />
+      <Button href="/recipes" label="Browse" />
       <Divider />
     </div>
   );

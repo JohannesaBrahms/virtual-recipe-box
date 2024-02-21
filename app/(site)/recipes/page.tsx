@@ -18,7 +18,6 @@ export default async function RecipesPage({
   return (
     <div>
       <Search placeholder="Search recipes..." />
-      <h1>Recipes List</h1>
       <RecipesList recipes={recipes} />
       <Link href="/recipes/create" component={NextLink}>
         Create New Recipe
