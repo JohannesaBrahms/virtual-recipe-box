@@ -4,6 +4,8 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Experimental_CssVarsProvider as CssvarsProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/utils/theme';
+import Header from './components/Header';
+import Copyright from './components/Copyright';
 import ModeSwitcher from './components/ModeSwitcher';
 
 export const metadata: Metadata = {
@@ -23,8 +25,9 @@ export default function RootLayout({
           <CssvarsProvider theme={theme} defaultMode="light">
             {/* CssBaseline kickstarts an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
-            <ModeSwitcher />
+            <Header />
             {children}
+            <Copyright />
           </CssvarsProvider>
         </AppRouterCacheProvider>
       </body>

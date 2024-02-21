@@ -5,12 +5,9 @@ import NextLink from 'next/link';
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h1>Virtual Recipe Box</h1>
+      <h1>Welcome to Your Virtual Recipe Box</h1>
       <Link href="/recipes/create" component={NextLink}>
         Create New Recipe
-      </Link>
-      <Link href="/recipes" component={NextLink}>
-        Browse Recipes
       </Link>
     </main>
   );
