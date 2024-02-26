@@ -30,6 +30,22 @@ const theme = extendTheme({
   typography: {
     fontFamily: inter.style.fontFamily,
   },
+  components: {
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: '16px',
+        },
+      },
+    },
+    MuiCardActions: {
+      styleOverrides: {
+        root: {
+          padding: '8px',
+        },
+      },
+    },
+  },
 });
 
 export default theme;
