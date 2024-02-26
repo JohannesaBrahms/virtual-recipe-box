@@ -1,15 +1,7 @@
-import { Divider, Button as MuiButton } from '@mui/material';
-import NextLink from 'next/link';
+import { Divider } from '@mui/material';
 import ModeSwitch from '../ModeSwitch';
 import styles from './Header.module.css';
-
-function Button(props: { href: string; label: string }) {
-  return (
-    <MuiButton variant="text" href={props.href} LinkComponent={NextLink}>
-      {props.label}
-    </MuiButton>
-  );
-}
+import { Button } from '../Button';
 
 export default function Header() {
   return (
