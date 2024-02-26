@@ -15,7 +15,7 @@ const theme = extendTheme({
     light: {
       palette: {
         primary: {
-          main: '#fcba03',
+          main: '#f44336',
         },
       },
     },
@@ -39,6 +39,13 @@ const theme = extendTheme({
       },
     },
     MuiCardActions: {
+      styleOverrides: {
+        root: {
+          padding: '8px',
+        },
+      },
+    },
+    MuiFormControl: {
       styleOverrides: {
         root: {
           padding: '8px',
