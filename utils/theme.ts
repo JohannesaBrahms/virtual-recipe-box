@@ -17,15 +17,34 @@ const theme = extendTheme({
         primary: {
           main: '#fcba03',
         },
-        mode: 'light',
       },
     },
     dark: {
-      palette: {},
+      palette: {
+        primary: {
+          main: '#eeeeee',
+        },
+      },
     },
   },
   typography: {
     fontFamily: inter.style.fontFamily,
+  },
+  components: {
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: '16px',
+        },
+      },
+    },
+    MuiCardActions: {
+      styleOverrides: {
+        root: {
+          padding: '8px',
+        },
+      },
+    },
   },
 });
 

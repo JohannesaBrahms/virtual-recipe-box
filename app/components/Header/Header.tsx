@@ -1,6 +1,7 @@
 import { Divider, Button as MuiButton } from '@mui/material';
 import NextLink from 'next/link';
-import ModeSwitcher from './ModeSwitcher';
+import ModeSwitch from '../ModeSwitch';
+import styles from './Header.module.css';
 
 function Button(props: { href: string; label: string }) {
   return (
@@ -12,11 +13,13 @@ function Button(props: { href: string; label: string }) {
 
 export default function Header() {
   return (
-    <div>
-      <ModeSwitcher />
-      <Button href="/" label="Home" />
-      <Button href="/recipes" label="Browse" />
+    <>
+      <div className={styles.container}>
+        <Button href="/" label="Home" />
+        <Button href="/recipes" label="Browse" />
+        <ModeSwitch />
+      </div>
       <Divider />
-    </div>
+    </>
   );
 }
