@@ -4,8 +4,9 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Experimental_CssVarsProvider as CssvarsProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/utils/theme';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import Copyright from './components/Copyright';
+import { Container } from '@mui/material';
 
 export const metadata: Metadata = {
   title: 'Virtual Recipe Box',
@@ -24,9 +25,11 @@ export default function RootLayout({
           <CssvarsProvider theme={theme} defaultMode="light">
             {/* CssBaseline kickstarts an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
-            <Header />
-            {children}
-            <Copyright />
+            <Container>
+              <Header />
+              {children}
+              <Copyright />
+            </Container>
           </CssvarsProvider>
         </AppRouterCacheProvider>
       </body>

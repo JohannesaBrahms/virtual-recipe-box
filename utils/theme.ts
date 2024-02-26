@@ -17,11 +17,14 @@ const theme = extendTheme({
         primary: {
           main: '#fcba03',
         },
-        mode: 'light',
       },
     },
     dark: {
-      palette: {},
+      palette: {
+        primary: {
+          main: '#eeeeee',
+        },
+      },
     },
   },
   typography: {
