@@ -75,12 +75,5 @@ export default function ModeSwitch() {
     return null;
   }
 
-  return (
-    <div>
-      <FormControlLabel
-        control={<MaterialUISwitch {...label} sx={{ m: 1 }} onChange={handleChange} />}
-        label={mode === 'light' ? 'Dark' : 'Light'}
-      />
-    </div>
-  );
+  return <MaterialUISwitch {...label} onChange={handleChange} />;
 }
