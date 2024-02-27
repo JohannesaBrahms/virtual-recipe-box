@@ -1,8 +1,11 @@
 import { Grid } from '@mui/material';
 import { Recipe } from '../@types/recipe';
 import RecipeCard from './Recipe/RecipeCard';
+import { fetchRecipes } from '../lib/actions';
 
-export default function RecipesList({ recipes, query }: { recipes: Recipe[]; query?: string }) {
+export default async function RecipesList({ query }: { query?: string }) {
+  const recipes: Recipe[] = await fetchRecipes(query);
+
   return (
     <Grid container spacing={3}>
       {recipes.length === 0 && <p>No recipes to show</p>}
