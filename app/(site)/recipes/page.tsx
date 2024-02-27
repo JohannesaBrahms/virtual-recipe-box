@@ -1,7 +1,8 @@
 import { Button } from '@/app/components/Button';
+import SkeletonRecipeCard from '@/app/components/Recipe/SkeletonRecipeCard';
 import RecipesList from '@/app/components/RecipesList';
 import Search from '@/app/components/Search';
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { Suspense } from 'react';
 
 export default async function RecipesPage({
@@ -21,7 +22,16 @@ export default async function RecipesPage({
       <Typography variant="h3" alignItems={'center'}>
         Recipes
       </Typography>
-      <Suspense fallback="Loading recipes...">
+      <Suspense
+        fallback={
+          <Grid container spacing={3}>
+            {Array.from(new Array(6)).map((item, index) => (
+              <Grid key={index} item xs={12} sm={6} md={4}>
+                <SkeletonRecipeCard />
+              </Grid>
+            ))}
+          </Grid>
+        }>
         <RecipesList query={query} />
       </Suspense>
     </div>
