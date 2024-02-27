@@ -1,8 +1,8 @@
+import { Button } from '@/app/components/Button';
 import RecipesList from '@/app/components/RecipesList';
 import Search from '@/app/components/Search';
-import Link from '@mui/material/Link';
-import NextLink from 'next/link';
 import { fetchRecipes } from '@/app/lib/actions';
+import { Typography } from '@mui/material';
 
 export default async function RecipesPage({
   searchParams,
@@ -19,9 +19,10 @@ export default async function RecipesPage({
     <div>
       <Search placeholder="Search recipes..." />
       <RecipesList recipes={recipes} />
-      <Link href="/recipes/create" component={NextLink}>
-        Create New Recipe
-      </Link>
+      <Button href="/recipes/create" label="Create New Recipe" />
+      <Typography variant="h3" alignItems={'center'}>
+        Recipes
+      </Typography>
     </div>
   );
 }
