@@ -7,10 +7,8 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import EditIcon from '@mui/icons-material/Edit';
@@ -19,6 +17,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState } from 'react';
 import { Recipe } from '@/app/@types/recipe';
 import { useRouter } from 'next/navigation';
+import UserAvatar from '../UserAvatar';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -52,13 +51,9 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            U
-          </Avatar>
-        }
+        avatar={<UserAvatar />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />

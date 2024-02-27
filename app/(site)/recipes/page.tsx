@@ -1,8 +1,9 @@
+import { Button } from '@/app/components/Button';
+import SkeletonRecipeCard from '@/app/components/Recipe/SkeletonRecipeCard';
 import RecipesList from '@/app/components/RecipesList';
 import Search from '@/app/components/Search';
-import Link from '@mui/material/Link';
-import NextLink from 'next/link';
-import { fetchRecipes } from '@/app/lib/actions';
+import { Grid, Typography } from '@mui/material';
+import { Suspense } from 'react';
 
 export default async function RecipesPage({
   searchParams,
@@ -13,15 +14,26 @@ export default async function RecipesPage({
   };
 }) {
   const query = searchParams?.query || '';
-  const recipes = await fetchRecipes(query);
 
   return (
     <div>
       <Search placeholder="Search recipes..." />
-      <RecipesList recipes={recipes} />
-      <Link href="/recipes/create" component={NextLink}>
-        Create New Recipe
-      </Link>
+      <Button href="/recipes/create" label="Create New Recipe" />
+      <Typography variant="h3" alignItems={'center'}>
+        Recipes
+      </Typography>
+      <Suspense
+        fallback={
+          <Grid container spacing={3}>
+            {Array.from(new Array(6)).map((item, index) => (
+              <Grid key={index} item xs={12} sm={6} md={4}>
+                <SkeletonRecipeCard />
+              </Grid>
+            ))}
+          </Grid>
+        }>
+        <RecipesList query={query} />
+      </Suspense>
     </div>
   );
 }
