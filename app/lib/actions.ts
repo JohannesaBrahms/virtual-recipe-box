@@ -51,8 +51,8 @@ export async function createRecipe(formData: FormData) {
           title,
           description,
           difficulty,
-          date: new Date().toISOString().split('T')[0],
-          editDate: new Date().toISOString().split('T')[0],
+          date: new Date().toISOString(),
+          editDate: new Date().toISOString(),
         },
       });
     });
@@ -89,7 +89,7 @@ export async function updateRecipe(id: string, formData: FormData) {
           title,
           description,
           difficulty,
-          editDate: new Date().toISOString().split('T')[0],
+          editDate: new Date().toISOString(),
         },
       });
     });
