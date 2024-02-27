@@ -19,11 +19,11 @@ export default async function RecipesPage({
       <Search placeholder="Search recipes..." />
       <Button href="/recipes/create" label="Create New Recipe" />
       <Typography variant="h3" alignItems={'center'}>
-        <Suspense fallback="Loading recipes...">
-          <RecipesList query={query} />
-        </Suspense>
         Recipes
       </Typography>
+      <Suspense fallback="Loading recipes...">
+        <RecipesList query={query} />
+      </Suspense>
     </div>
   );
 }
