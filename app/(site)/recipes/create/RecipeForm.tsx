@@ -1,6 +1,7 @@
 'use client';
 
-import { createRecipe, updateRecipe } from '@/app/lib/actions';
+import { createRecipe, updateRecipe } from '@/actions';
+import { Recipe } from '@/app/@types/recipe';
 import { useFormStatus } from 'react-dom';
 
 export default function RecipeForm({ recipe }: { recipe?: Recipe }) {

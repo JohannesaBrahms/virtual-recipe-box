@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
-import { Recipe } from '../@types/recipe';
-import RecipeCard from './Recipe/RecipeCard';
-import { fetchRecipes } from '../lib/actions';
+import { Recipe } from '@/app/@types/recipe';
+import RecipeCard from '@/components/Recipe/RecipeCard';
+import { fetchRecipes } from '@/actions';
 
 export default async function RecipesList({ query }: { query?: string }) {
   const recipes: Recipe[] = await fetchRecipes(query);

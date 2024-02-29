@@ -1,7 +1,7 @@
-import { Button } from '@/app/components/Button';
-import SkeletonRecipeCard from '@/app/components/Recipe/SkeletonRecipeCard';
-import RecipesList from '@/app/components/RecipesList';
-import Search from '@/app/components/Search';
+import { Button } from '@/components/Button';
+import SkeletonRecipeCard from '@/components/Recipe/SkeletonRecipeCard';
+import RecipesList from '@/components/RecipesList';
+import Search from '@/components/Search';
 import { Grid, Typography } from '@mui/material';
 import { Suspense } from 'react';
 

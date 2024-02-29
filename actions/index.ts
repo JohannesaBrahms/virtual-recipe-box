@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { z } from 'zod';
-import { prisma } from './db';
+import { prisma } from '@/lib/db';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -121,4 +121,8 @@ export async function fetchRecipes(query?: string) {
       ],
     },
   });
+}
+
+export async function login(formData: FormData) {
+  // return await prisma.account.findUnique()
 }
