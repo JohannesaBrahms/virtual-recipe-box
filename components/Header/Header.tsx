@@ -1,7 +1,7 @@
 import { Divider } from '@mui/material';
-import ModeSwitch from '../ModeSwitch';
-import styles from './Header.module.css';
-import { Button } from '../Button';
+import ModeSwitch from '../mode-switch';
+import styles from './header.module.css';
+import { Button } from '../button';
 
 export default function Header() {
   return (

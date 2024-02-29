@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import styles from './page.module.css';
-import { Button } from '@/components/Button';
+import { Button } from '@/components/button';
 
 export default function Home() {
   return (

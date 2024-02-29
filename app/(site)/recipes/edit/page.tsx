@@ -2,7 +2,8 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import RecipeForm from '../create/RecipeForm';
+import RecipeForm from '../create/recipe-form';
+import { Recipe } from '@/app/@types/recipe';
 
 const EditRecipe = () => {
   const [recipe, setRecipe] = useState<Recipe | undefined>(undefined);

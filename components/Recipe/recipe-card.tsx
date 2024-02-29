@@ -17,7 +17,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState } from 'react';
 import { Recipe } from '@/app/@types/recipe';
 import { useRouter } from 'next/navigation';
-import UserAvatar from '@/components/UserAvatar';
+import UserAvatar from '@/components/user-avatar';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
