@@ -5,7 +5,7 @@ import { Experimental_CssVarsProvider as CssvarsProvider } from '@mui/material/s
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/utils/theme';
 import Header from '@/components/header/header';
-import Copyright from '@/components/Copyright';
+import Copyright from '@/components/copyright';
 import { Container } from '@mui/material';
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function RootLayout({
             {/* CssBaseline kickstarts an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             <Container>
-              <Header />
+              {/* <Header /> */}
               {children}
               <Copyright />
             </Container>
