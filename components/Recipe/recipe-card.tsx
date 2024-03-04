@@ -65,7 +65,7 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
       <CardMedia
         component="img"
         height="250"
-        image="https://source.unsplash.com/random/500x250/?recipe"
+        image={`https://source.unsplash.com/random/500x250/?recipe&${recipe.id}`}
         alt="Paella dish"
       />
       <CardContent>
