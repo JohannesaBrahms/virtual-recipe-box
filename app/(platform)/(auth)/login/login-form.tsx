@@ -1,10 +1,10 @@
 'use client';
 
-import { Button } from '@/components/Button';
 import { Checkbox, FormControlLabel, Grid, Input, TextField } from '@mui/material';
 import { login } from '@/actions';
 
 import * as Popover from '@radix-ui/react-popover';
+import { Button } from '@/components/button';
 
 const PopoverDemo = () => (
   <Popover.Root>
@@ -31,7 +31,7 @@ export default function LoginForm() {
         autoComplete="email"
         autoFocus
       />
-      <TextField
+      {/* <TextField
         margin="normal"
         required
         fullWidth
@@ -40,19 +40,15 @@ export default function LoginForm() {
         type="password"
         id="password"
         autoComplete="current-password"
-      />
+      /> */}
       <FormControlLabel
         control={<Checkbox value="remember" color="primary" />}
         label="Remember me"
       />
-      <PopoverDemo />
-      {/* <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-          label='Sign in'
-        /> */}
+      {/* <PopoverDemo /> */}
+      <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }} fullWidth>
+        Sign In
+      </Button>
     </form>
   );
 }

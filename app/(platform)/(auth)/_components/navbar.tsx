@@ -5,13 +5,13 @@ import { Button } from '@/components/button';
 
 export default function NavBar() {
   return (
-    <>
+    <nav>
       <div className={styles.container}>
-        <Button href="/login" label="Sign in" />
-        <Button href="/register" label="Try Free" />
+        <Button href="/login">Sign In</Button>
+        <Button href="/register">Try Free</Button>
         <ModeSwitch />
       </div>
       <Divider />
-    </>
+    </nav>
   );
 }

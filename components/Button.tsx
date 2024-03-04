@@ -1,10 +1,16 @@
-import { Button as MuiButton } from '@mui/material';
+import { Button as MuiButton, ButtonProps as MaterialButtonProps } from '@mui/material';
 import NextLink from 'next/link';
 
-export function Button(props: { href: string; label: string }) {
+export type ButtonProps = MaterialButtonProps & {
+  isDisabled?: boolean;
+  icon?: JSX.Element;
+  children: React.ReactNode;
+};
+
+export function Button({ isDisabled, icon, children, ...props }: ButtonProps) {
   return (
-    <MuiButton variant="text" LinkComponent={NextLink} {...props}>
-      {props.label}
+    <MuiButton startIcon={icon} disabled={isDisabled} LinkComponent={NextLink} {...props}>
+      {children}
     </MuiButton>
   );
 }

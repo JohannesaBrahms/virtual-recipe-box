@@ -6,10 +6,12 @@ import { Logo } from '@/components/logo';
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Logo />
-      <Typography variant="h3">Tiganj</Typography>
+      <div>
+        <Logo />
+        <Typography variant="h3">Tiganj</Typography>
+      </div>
       <Typography variant="body1">One stop shop for all your meal-planning needs</Typography>
-      <Button href="/register" label="Let's Get cooking" />
+      <Button href="/register">Let&apos;s Get cooking</Button>
     </main>
   );
 }
