@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
-import LoginForm from './login-form';
+import LoginForm from '../_components/login-form';
 
-export default function Login() {
+const LoginPage = () => {
   return (
     <Box
       sx={{
@@ -16,4 +16,6 @@ export default function Login() {
       <LoginForm />
     </Box>
   );
-}
+};
+
+export default LoginPage;

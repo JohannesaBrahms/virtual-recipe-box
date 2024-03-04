@@ -3,7 +3,7 @@ import styles from './page.module.css';
 import { Button } from '@/components/button';
 import { Logo } from '@/components/logo';
 
-export default function Home() {
+const HomePage = () => {
   return (
     <main className={styles.main}>
       <div>
@@ -14,4 +14,6 @@ export default function Home() {
       <Button href="/register">Let&apos;s Get cooking</Button>
     </main>
   );
-}
+};
+
+export default HomePage;

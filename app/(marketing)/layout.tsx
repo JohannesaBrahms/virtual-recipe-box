@@ -1,6 +1,6 @@
 import NavBar from './_components/navbar';
 
-const LandingLayout = ({ children }: any) => {
+const HomeLayout = ({ children }: any) => {
   return (
     <div>
       <NavBar />
@@ -9,4 +9,4 @@ const LandingLayout = ({ children }: any) => {
   );
 };
 
-export default LandingLayout;
+export default HomeLayout;

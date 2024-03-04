@@ -5,14 +5,14 @@ import Search from '@/components/search';
 import { Grid, Typography } from '@mui/material';
 import { Suspense } from 'react';
 
-export default async function RecipesPage({
+const RecipesPage = async ({
   searchParams,
 }: {
   searchParams?: {
     query?: string;
     page?: string;
   };
-}) {
+}) => {
   const query = searchParams?.query || '';
 
   return (
@@ -36,4 +36,6 @@ export default async function RecipesPage({
       </Suspense>
     </div>
   );
-}
+};
+
+export default RecipesPage;

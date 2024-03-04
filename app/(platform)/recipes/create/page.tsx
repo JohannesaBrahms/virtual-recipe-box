@@ -1,6 +1,6 @@
-import RecipeForm from './recipe-form';
+import RecipeForm from './_components/recipe-form';
 
-const CreateRecipe = () => {
+const CreateRecipePage = () => {
   return (
     <div>
       <h1>Create New Recipe</h1>
@@ -9,4 +9,4 @@ const CreateRecipe = () => {
   );
 };
 
-export default CreateRecipe;
+export default CreateRecipePage;
