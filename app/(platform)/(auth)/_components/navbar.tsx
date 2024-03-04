@@ -8,7 +8,9 @@ export default function NavBar() {
     <nav>
       <div className={styles.container}>
         <Button href="/login">Sign In</Button>
-        <Button href="/register">Try Free</Button>
+        <Button href="/register" variant="contained">
+          Try Free
+        </Button>
         <ModeSwitch />
       </div>
       <Divider />

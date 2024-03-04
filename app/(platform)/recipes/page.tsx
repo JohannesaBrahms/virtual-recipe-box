@@ -18,7 +18,9 @@ const RecipesPage = async ({
   return (
     <div>
       <Search placeholder="Search recipes..." />
-      <Button href="/recipes/create" label="Create New Recipe" />
+      <Button href="/recipes/create" variant="contained">
+        Create New Recipe
+      </Button>
       <Typography variant="h3" alignItems={'center'}>
         Recipes
       </Typography>

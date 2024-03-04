@@ -10,7 +10,9 @@ export default function NavBar() {
         <Logo />
         <Button href="/recipes">Browse</Button>
         <Button href="/login">Sign In</Button>
-        <Button href="/register">Try Free</Button>
+        <Button href="/register" variant="contained">
+          Try Free
+        </Button>
       </div>
       <Divider />
     </nav>
