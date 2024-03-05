@@ -5,6 +5,8 @@ export const LoginSchema = z.object({
   password: z.string(),
 });
 
+export type LoginSchemaType = z.infer<typeof LoginSchema>;
+
 const RecipeSchema = z.object({
   id: z.string(),
   accountId: z.string(),

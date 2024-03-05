@@ -1,4 +1,4 @@
-import { LoginForm } from '../_components/login-form';
+import { LoginForm } from './_components/login-form';
 import { CardWrapper } from '@/components/auth/card-wrapper/card-wrapper';
 import styles from './page.module.css';
 
