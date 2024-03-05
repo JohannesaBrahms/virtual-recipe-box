@@ -3,32 +3,8 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { z } from 'zod';
 import { prisma } from '@/lib/db';
-
-const FormSchema = z.object({
-  id: z.string(),
-  accountId: z.string(),
-  title: z.string(),
-  description: z.string(),
-  difficulty: z.enum(['beginner', 'intermediate', 'pro']),
-  editDate: z.string(),
-  date: z.string(),
-});
-
-const CreateRecipe = FormSchema.omit({
-  id: true,
-  accountId: true,
-  editDate: true,
-  date: true,
-});
-
-const UpdateRecipe = FormSchema.omit({
-  id: true,
-  accountId: true,
-  editDate: true,
-  date: true,
-});
+import { CreateRecipe, UpdateRecipe } from '@/schemas';
 
 export async function createRecipe(formData: FormData) {
   const { title, description, difficulty } = CreateRecipe.parse({
