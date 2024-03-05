@@ -1,6 +1,6 @@
 import NavBar from './_components/navbar';
 
-const AuthLayout = ({ children }: any) => {
+const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <NavBar />

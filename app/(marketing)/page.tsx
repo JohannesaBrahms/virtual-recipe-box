@@ -11,7 +11,7 @@ const HomePage = () => {
         <Typography variant="h3">Tiganj</Typography>
       </div>
       <Typography variant="body1">One stop shop for all your meal-planning needs</Typography>
-      <Button href="/register" variant="outlined">
+      <Button href="/auth/register" variant="outlined">
         Let&apos;s Get cooking
       </Button>
     </main>

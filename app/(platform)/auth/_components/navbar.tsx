@@ -7,8 +7,8 @@ export default function NavBar() {
   return (
     <nav>
       <div className={styles.container}>
-        <Button href="/login">Sign In</Button>
-        <Button href="/register" variant="contained">
+        <Button href="/auth/login">Sign In</Button>
+        <Button href="/auth/register" variant="contained">
           Try Free
         </Button>
         <ModeSwitch />

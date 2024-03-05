@@ -9,8 +9,8 @@ export default function NavBar() {
       <div className={styles.container}>
         <Logo />
         <Button href="/recipes">Browse</Button>
-        <Button href="/login">Sign In</Button>
-        <Button href="/register" variant="contained">
+        <Button href="/auth/login">Sign In</Button>
+        <Button href="/auth/register" variant="contained">
           Try Free
         </Button>
       </div>
