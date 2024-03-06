@@ -19,7 +19,6 @@ export const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>('');
   const [isPending, startTransition] = useTransition();
   const {
-    register,
     control,
     handleSubmit,
     formState: { errors },
@@ -53,7 +52,6 @@ export const LoginForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
         control={control}
-        {...register('email')}
         name="email"
         render={({ field }) => (
           <TextField
@@ -76,7 +74,6 @@ export const LoginForm = () => {
       {errors.email && <span>{errors.email.message}</span>}
       <Controller
         control={control}
-        {...register('password')}
         name="password"
         render={({ field }) => (
           <TextField
