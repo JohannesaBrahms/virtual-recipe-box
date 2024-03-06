@@ -4,10 +4,10 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { prisma } from '@/lib/db';
-import { UpdateRecipe } from '@/schemas';
+import { UpdateRecipeSchema } from '@/lib/types';
 
 export const updateRecipe = async (id: string, formData: FormData) => {
-  const { title, description, difficulty } = UpdateRecipe.parse({
+  const { title, description, difficulty } = UpdateRecipeSchema.parse({
     title: formData.get('title'),
     description: formData.get('description'),
     difficulty: formData.get('difficulty'),

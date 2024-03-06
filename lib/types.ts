@@ -7,7 +7,7 @@ export const LoginSchema = z.object({
   }),
 });
 
-export type LoginSchemaType = z.infer<typeof LoginSchema>;
+export type Login = z.infer<typeof LoginSchema>;
 
 const RecipeSchema = z.object({
   id: z.string(),
@@ -19,14 +19,14 @@ const RecipeSchema = z.object({
   date: z.string(),
 });
 
-export const CreateRecipe = RecipeSchema.omit({
+export const CreateRecipeSchema = RecipeSchema.omit({
   id: true,
   accountId: true,
   editDate: true,
   date: true,
 });
 
-export const UpdateRecipe = RecipeSchema.omit({
+export const UpdateRecipeSchema = RecipeSchema.omit({
   id: true,
   accountId: true,
   editDate: true,

@@ -5,7 +5,7 @@ import { Button } from '@/components/button';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { LoginSchema, LoginSchemaType } from '@/schemas';
+import { LoginSchema, Login } from '@/lib/types';
 import { login } from '@/actions/login';
 
 import { Checkbox, FormControlLabel, InputAdornment, TextField } from '@mui/material';
@@ -17,7 +17,7 @@ export const LoginForm = () => {
     register,
     control,
     formState: { errors },
-  } = useForm<LoginSchemaType>({
+  } = useForm<Login>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: '',
@@ -44,7 +44,6 @@ export const LoginForm = () => {
             required
             placeholder="example@example.com"
             type="email"
-            // helperText="Wajib diisi"
             label="Email"
           />
         )}
