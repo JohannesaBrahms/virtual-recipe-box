@@ -1,8 +1,43 @@
 'use server';
 
-export async function login(formData: FormData) {
-  console.log(
-    `Email and password submitted: ${formData.get('email')} and ${formData.get('password')}`
-  );
-  // return await prisma.account.findUnique()
-}
+import { prisma } from '@/lib/db';
+import { LoginSchema, Login } from '@/lib/types';
+
+export const login = async (login: unknown) => {
+  const result = LoginSchema.safeParse(login);
+
+  if (!result.success) {
+    let errorMessage = '';
+
+    result.error.issues.forEach((issue) => {
+      errorMessage = errorMessage + issue.path[0] + ': ' + issue.message + '. ';
+    });
+
+    // const serverErrors = Object.fromEntries(
+    //   result.error?.issues?.map((issue) => [issue.path[0], issue.message]) || []
+    // );
+
+    return {
+      error: errorMessage,
+    };
+  }
+  return {
+    success: 'Yay!',
+  };
+  // try {
+  //   //TODO
+  //   prisma.account.findFirst({
+  //     where: {
+  //       email: result.data.email
+  //     }
+  //   }).then(() => {
+  //     return {
+  //       success: "User authenticated!"
+  //     };
+  //   })
+  // } catch (error) {
+  //   return {
+  //     error: error,
+  //   };
+  // }
+};

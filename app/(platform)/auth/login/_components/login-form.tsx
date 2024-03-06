@@ -12,10 +12,16 @@ import { Checkbox, FormControlLabel, InputAdornment, TextField } from '@mui/mate
 import { EyeIcon } from '@heroicons/react/24/outline';
 import { FormStatus } from '@/components/form-status/form-status';
 
+import { useState, useTransition } from 'react';
+
 export const LoginForm = () => {
+  const [error, setError] = useState<string | undefined>('');
+  const [success, setSuccess] = useState<string | undefined>('');
+  const [isPending, startTransition] = useTransition();
   const {
     register,
     control,
+    handleSubmit,
     formState: { errors },
   } = useForm<Login>({
     resolver: zodResolver(LoginSchema),
@@ -25,8 +31,26 @@ export const LoginForm = () => {
     },
   });
 
+  const onSubmit = async (formData: Login) => {
+    setError('');
+    setSuccess('');
+
+    startTransition(() => {
+      // validate client-side
+      const result = LoginSchema.safeParse(formData);
+      if (!result.success) {
+        setError(result.error.message);
+        return;
+      }
+      login(formData).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
+    });
+  };
+
   return (
-    <form action={login}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
         control={control}
         {...register('email')}
@@ -34,6 +58,7 @@ export const LoginForm = () => {
         render={({ field }) => (
           <TextField
             {...field}
+            disabled={isPending}
             margin="normal"
             id="email"
             name="email"
@@ -56,6 +81,7 @@ export const LoginForm = () => {
         render={({ field }) => (
           <TextField
             {...field}
+            disabled={isPending}
             margin="normal"
             id="password"
             name="password"
@@ -81,9 +107,14 @@ export const LoginForm = () => {
         control={<Checkbox value="remember" color="primary" />}
         label="Remember me"
       />
-      <FormStatus status="error" message="" />
-      <FormStatus status="success" message="" />
-      <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }} fullWidth>
+      <FormStatus status="error" message={error} />
+      <FormStatus status="success" message={success} />
+      <Button
+        disabled={isPending}
+        type="submit"
+        variant="contained"
+        sx={{ mt: 3, mb: 2 }}
+        fullWidth>
         Sign In
       </Button>
     </form>
