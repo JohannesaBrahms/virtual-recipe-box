@@ -10,6 +10,7 @@ import { login } from '@/actions';
 
 import { Checkbox, FormControlLabel, InputAdornment, TextField } from '@mui/material';
 import { EyeIcon } from '@heroicons/react/24/outline';
+import { FormStatus } from '@/components/form-status/form-status';
 
 export const LoginForm = () => {
   const {
@@ -74,12 +75,15 @@ export const LoginForm = () => {
               ),
             }}
           />
-        )}></Controller>
+        )}
+      />
       {errors.password && <span>{errors.password.message}</span>}
       <FormControlLabel
         control={<Checkbox value="remember" color="primary" />}
         label="Remember me"
       />
+      <FormStatus status="error" message="Invalid credentials!" />
+      <FormStatus status="success" message="Success!" />
       <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }} fullWidth>
         Sign In
       </Button>
