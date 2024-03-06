@@ -6,7 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { LoginSchema, LoginSchemaType } from '@/schemas';
-import { login } from '@/actions';
+import { login } from '@/actions/login';
 
 import { Checkbox, FormControlLabel, InputAdornment, TextField } from '@mui/material';
 import { EyeIcon } from '@heroicons/react/24/outline';
@@ -82,8 +82,8 @@ export const LoginForm = () => {
         control={<Checkbox value="remember" color="primary" />}
         label="Remember me"
       />
-      <FormStatus status="error" message="Invalid credentials!" />
-      <FormStatus status="success" message="Success!" />
+      <FormStatus status="error" message="" />
+      <FormStatus status="success" message="" />
       <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }} fullWidth>
         Sign In
       </Button>

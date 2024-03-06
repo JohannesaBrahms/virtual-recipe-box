@@ -1,6 +1,7 @@
 'use client';
 
-import { createRecipe, updateRecipe } from '@/actions';
+import { createRecipe } from '@/actions/create-recipe';
+import { updateRecipe } from '@/actions/update-recipe';
 import { Recipe } from '@/app/@types/recipe';
 import { useFormStatus } from 'react-dom';
 
