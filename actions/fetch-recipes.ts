@@ -1,10 +1,9 @@
 'use server';
 
-import { prisma } from '@/lib/db';
+import { db } from '@/lib/db';
 
 export async function fetchRecipes(query?: string) {
-  // await setTimeout(2000) // uncomment for skeleton testing
-  return await prisma.recipe.findMany({
+  return await db.recipe.findMany({
     where: {
       OR: [
         {

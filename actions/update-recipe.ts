@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { prisma } from '@/lib/db';
+import { db } from '@/lib/db';
 import { UpdateRecipeSchema } from '@/lib/types';
 
 export const updateRecipe = async (id: string, formData: FormData) => {
@@ -15,7 +15,7 @@ export const updateRecipe = async (id: string, formData: FormData) => {
 
   try {
     // transaction to find author (by `id` in future) and assign recipe and author id.
-    await prisma.$transaction(async (tx) => {
+    await db.$transaction(async (tx) => {
       const author = await tx.account.findFirst();
 
       if (author == undefined) {

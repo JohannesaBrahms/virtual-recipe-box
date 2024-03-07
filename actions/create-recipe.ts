@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { prisma } from '@/lib/db';
+import { db } from '@/lib/db';
 import { CreateRecipeSchema } from '@/lib/types';
 
 export const createRecipe = async (formData: FormData) => {
@@ -14,7 +14,7 @@ export const createRecipe = async (formData: FormData) => {
   });
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await db.$transaction(async (tx) => {
       const author = await tx.account.findFirst();
 
       if (author == undefined) {

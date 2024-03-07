@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/db';
+import { db } from '@/lib/db';
 import { LoginSchema, Login } from '@/lib/types';
 
 export const login = async (login: unknown) => {
@@ -26,7 +26,7 @@ export const login = async (login: unknown) => {
   };
   // try {
   //   //TODO
-  //   prisma.account.findFirst({
+  //   db.account.findFirst({
   //     where: {
   //       email: result.data.email
   //     }

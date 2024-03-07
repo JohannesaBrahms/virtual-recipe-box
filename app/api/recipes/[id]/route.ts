@@ -1,8 +1,8 @@
-import { prisma } from '@/lib/db';
+import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request, route: { params: { id: string } }) {
-  const recipe = await prisma.recipe.findUnique({
+  const recipe = await db.recipe.findUnique({
     where: {
       id: route.params.id,
     },
