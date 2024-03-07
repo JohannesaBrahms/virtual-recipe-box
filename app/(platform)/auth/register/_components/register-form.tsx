@@ -44,8 +44,8 @@ export const RegisterForm = () => {
         return;
       }
       registerAction(formData).then((data) => {
-        // setError(data.error);
-        // setSuccess(data.success);
+        setError(data.error);
+        setSuccess(data.success);
       });
     });
   };
