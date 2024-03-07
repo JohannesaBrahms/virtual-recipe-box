@@ -15,15 +15,15 @@ export const createRecipe = async (formData: FormData) => {
 
   try {
     await db.$transaction(async (tx) => {
-      const author = await tx.account.findFirst();
+      const user = await tx.user.findFirst();
 
-      if (author == undefined) {
+      if (user == undefined) {
         throw new Error('Error finding author. Could not create recipe.');
       }
 
       await tx.recipe.create({
         data: {
-          authorId: author.id,
+          userId: user.id,
           title,
           description,
           difficulty,

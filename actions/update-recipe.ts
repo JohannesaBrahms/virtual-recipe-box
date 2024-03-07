@@ -16,9 +16,9 @@ export const updateRecipe = async (id: string, formData: FormData) => {
   try {
     // transaction to find author (by `id` in future) and assign recipe and author id.
     await db.$transaction(async (tx) => {
-      const author = await tx.account.findFirst();
+      const user = await tx.user.findFirst();
 
-      if (author == undefined) {
+      if (user == undefined) {
         throw new Error('Could not update recipe.');
       }
 
@@ -27,7 +27,7 @@ export const updateRecipe = async (id: string, formData: FormData) => {
           id: id,
         },
         data: {
-          authorId: author.id,
+          userId: user.id,
           title,
           description,
           difficulty,
