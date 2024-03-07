@@ -64,15 +64,13 @@ export const RegisterForm = () => {
             name="name"
             aria-label="Name"
             fullWidth
-            autoFocus
             aria-required
-            required
             placeholder="Jane"
             label="Name"
           />
         )}
       />
-      {errors.name && <span>{errors.name.message}</span>}
+      {errors.name && <em>{errors.name.message}</em>}
       <Controller
         control={control}
         name="email"
@@ -85,16 +83,14 @@ export const RegisterForm = () => {
             name="email"
             aria-label="Email Address"
             fullWidth
-            autoFocus
             aria-required
-            required
             placeholder="example@example.com"
             type="email"
             label="Email"
           />
         )}
       />
-      {errors.email && <span>{errors.email.message}</span>}
+      {errors.email && <em>{errors.email.message}</em>}
       <Controller
         control={control}
         name="password"
@@ -108,9 +104,7 @@ export const RegisterForm = () => {
             type="password"
             aria-label="Password"
             fullWidth
-            autoFocus
             aria-required
-            required
             label="Password"
             InputProps={{
               endAdornment: (
@@ -122,11 +116,7 @@ export const RegisterForm = () => {
           />
         )}
       />
-      {errors.password && <span>{errors.password.message}</span>}
-      <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
-        label="Remember me"
-      />
+      {errors.password && <em>{errors.password.message}</em>}
       <FormStatus status="error" message={error} />
       <FormStatus status="success" message={success} />
       <Button

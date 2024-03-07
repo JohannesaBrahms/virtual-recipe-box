@@ -20,7 +20,9 @@ export const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
   const {
     control,
+    reset,
     handleSubmit,
+    clearErrors,
     formState: { errors },
   } = useForm<Login>({
     resolver: zodResolver(LoginSchema),
@@ -64,14 +66,13 @@ export const LoginForm = () => {
             fullWidth
             autoFocus
             aria-required
-            required
             placeholder="example@example.com"
             type="email"
             label="Email"
           />
         )}
       />
-      {errors.email && <span>{errors.email.message}</span>}
+      {errors.email && <em>{errors.email.message}</em>}
       <Controller
         control={control}
         name="password"
@@ -85,9 +86,7 @@ export const LoginForm = () => {
             type="password"
             aria-label="Password"
             fullWidth
-            autoFocus
             aria-required
-            required
             label="Password"
             InputProps={{
               endAdornment: (
@@ -99,11 +98,11 @@ export const LoginForm = () => {
           />
         )}
       />
-      {errors.password && <span>{errors.password.message}</span>}
-      <FormControlLabel
+      {errors.password && <em>{errors.password.message}</em>}
+      {/* <FormControlLabel
         control={<Checkbox value="remember" color="primary" />}
         label="Remember me"
-      />
+      /> */}
       <FormStatus status="error" message={error} />
       <FormStatus status="success" message={success} />
       <Button
