@@ -19,7 +19,6 @@ export default {
           if (!user || !user.password) return null;
 
           const passwordsMatch = await bcrypt.compare(password, user.password);
-          console.log('PASSWORDS MATCH', passwordsMatch);
           if (passwordsMatch) return user;
         }
         return null;

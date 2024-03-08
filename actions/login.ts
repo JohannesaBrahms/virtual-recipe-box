@@ -1,6 +1,5 @@
 'use server';
 
-import { db } from '@/lib/db';
 import { signIn } from '@/auth';
 import { LoginSchema, Login } from '@/lib/types';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
