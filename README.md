@@ -4,6 +4,10 @@ This is a Recipe Management and Sharing Platform. It serves as a centralized hub
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Auth
+
+Make sure you have the `AUTH_SECRET` and the `NEXTAUTH_SECRET` (just to be sure at this point) in your `.env` file. You can generate one [here](https://generate-secret.vercel.app/32).
+
 ## Getting Started
 
 First, run the development server:

@@ -1,0 +1,24 @@
+.error, .success {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.icon {
+  height: 40px;
+  width: 40px;
+}
+
+.error {
+  color: rgba(216, 52, 19, .8);
+  background: rgba(216, 52, 19, .2);
+}
+
+.success {
+  color: rgba(19, 216, 108, .8);
+  background: rgba(19, 216, 108, .2);
+}
