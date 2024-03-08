@@ -5,6 +5,21 @@ import { db } from '@/lib/db';
 import authConfig from '@/auth.config';
 import { getUserById } from '@/data/user';
 
+declare module '@auth/core/types' {
+  interface User {
+    role: 'ADMIN' | 'USER';
+  }
+  interface Session {
+    user: User;
+  }
+}
+
+declare module '@auth/core/jwt' {
+  interface JWT {
+    role: 'ADMIN' | 'USER';
+  }
+}
+
 export const {
   handlers: { GET, POST },
   auth,
@@ -19,7 +34,6 @@ export const {
       if (token.role && session.user) {
         session.user.role = token.role;
       }
-      console.log({ user: session.user });
       return session;
     },
     async jwt({ token }) {
