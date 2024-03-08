@@ -1,15 +1,18 @@
 'use server';
 
 import { db } from '@/lib/db';
+import { signIn } from '@/auth';
 import { LoginSchema, Login } from '@/lib/types';
+import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
+import { AuthError } from 'next-auth';
 
 export const login = async (login: unknown) => {
-  const result = LoginSchema.safeParse(login);
+  const validatedFields = LoginSchema.safeParse(login);
 
-  if (!result.success) {
+  if (!validatedFields.success) {
     let errorMessage = '';
 
-    result.error.issues.forEach((issue) => {
+    validatedFields.error.issues.forEach((issue) => {
       errorMessage = errorMessage + issue.path[0] + ': ' + issue.message + '. ';
     });
 
@@ -21,23 +24,24 @@ export const login = async (login: unknown) => {
       error: errorMessage,
     };
   }
-  return {
-    success: 'Yay!',
-  };
-  // try {
-  //   //TODO
-  //   db.account.findFirst({
-  //     where: {
-  //       email: result.data.email
-  //     }
-  //   }).then(() => {
-  //     return {
-  //       success: "User authenticated!"
-  //     };
-  //   })
-  // } catch (error) {
-  //   return {
-  //     error: error,
-  //   };
-  // }
+  const { email, password } = validatedFields.data;
+
+  try {
+    await signIn('credentials', {
+      email,
+      password,
+      redirectTo: DEFAULT_LOGIN_REDIRECT,
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return { error: 'Invalid credentials!' };
+        default:
+          return { error: 'Something went wrong!' };
+      }
+    }
+
+    throw error;
+  }
 };
