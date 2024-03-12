@@ -26,6 +26,13 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  pages: {
+    // TODO Fix error to use our custom login page.
+    // This config causes redirection to `~/api/auth/auth/login?error=OAuthAccountNotLinked`
+    // instead of to `~/auth/login?error=OAuthAccountNotLinked`
+    // signIn: "/auth/login",
+    error: '/auth/error',
+  },
   events: {
     async linkAccount({ user }) {
       await db.user.update({

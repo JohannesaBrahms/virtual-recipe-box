@@ -10,7 +10,7 @@ export const publicRoutes = ['/'];
  * These routes will redirect logged in users to /recipes
  * @type {string[]}
  */
-export const authRoutes = ['/auth/register', '/auth/login'];
+export const authRoutes = ['/auth/register', '/auth/login', '/auth/error'];
 
 /**
  * Prefix for API authentication routes
