@@ -52,6 +52,7 @@ export const LoginForm = () => {
       }
       login(formData).then((data) => {
         setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };
