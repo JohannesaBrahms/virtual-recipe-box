@@ -6,6 +6,7 @@ import { generateVerificationToken } from '@/lib/tokens';
 import { LoginSchema, Login } from '@/lib/types';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { AuthError } from 'next-auth';
+import { sendVerificationEmail } from '@/lib/mail';
 
 export const login = async (login: unknown) => {
   const validatedFields = LoginSchema.safeParse(login);
@@ -33,6 +34,7 @@ export const login = async (login: unknown) => {
   }
   if (!existingUser.emailVerified) {
     const verificationToken = await generateVerificationToken(existingUser.email);
+    await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
     return { success: 'Confirmation email sent!' };
   }
