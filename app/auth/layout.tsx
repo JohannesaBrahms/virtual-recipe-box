@@ -1,12 +1,7 @@
-import NavBar from './_components/navbar';
+import styles from './layout.module.css';
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div>
-      <NavBar />
-      {children}
-    </div>
-  );
+  return <div className={styles.container}>{children}</div>;
 };
 
 export default AuthLayout;
