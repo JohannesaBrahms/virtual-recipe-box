@@ -4,6 +4,9 @@ import { db } from '@/lib/db';
 import bcrypt from 'bcryptjs';
 import { RegisterSchema } from '@/lib/types';
 import { getUserByEmail } from '@/data/user';
+import { generateVerificationToken } from '@/lib/tokens';
+import { sendVerificationEmail } from '@/lib/mail';
+import { send } from 'process';
 
 export const register = async (data: unknown) => {
   const validatedFields = RegisterSchema.safeParse(data);
@@ -33,9 +36,10 @@ export const register = async (data: unknown) => {
     },
   });
 
-  // TODO Send verification token email
+  const verificationToken = await generateVerificationToken(email);
+  await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
   return {
-    success: 'User created!',
+    success: 'Confirmation email sent!',
   };
 };

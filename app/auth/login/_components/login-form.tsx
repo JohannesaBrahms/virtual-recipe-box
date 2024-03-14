@@ -8,13 +8,20 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema, Login } from '@/lib/types';
 import { login } from '@/actions/login';
 
-import { Checkbox, FormControlLabel, InputAdornment, TextField } from '@mui/material';
+import { InputAdornment, TextField } from '@mui/material';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import { FormStatus } from '@/components/form-status/form-status';
 
+import { useSearchParams } from 'next/navigation';
 import { useState, useTransition } from 'react';
 
 export const LoginForm = () => {
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get('error') === 'OAuthAccountNotLinked'
+      ? 'Email already in use with a different provider'
+      : '';
+
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
   const [isPending, startTransition] = useTransition();
@@ -44,8 +51,8 @@ export const LoginForm = () => {
         return;
       }
       login(formData).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };
@@ -99,11 +106,7 @@ export const LoginForm = () => {
         )}
       />
       {errors.password && <em>{errors.password.message}</em>}
-      {/* <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
-        label="Remember me"
-      /> */}
-      <FormStatus status="error" message={error} />
+      <FormStatus status="error" message={error || urlError} />
       <FormStatus status="success" message={success} />
       <Button
         disabled={isPending}
