@@ -1,5 +1,13 @@
 import { z } from 'zod';
 
+export const ResetSchema = z.object({
+  email: z.string().email({
+    message: 'Email is required',
+  }),
+});
+
+export type Reset = z.infer<typeof ResetSchema>;
+
 export const LoginSchema = z.object({
   email: z.string().email({
     message: 'Email is required',
