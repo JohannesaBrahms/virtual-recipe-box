@@ -5,53 +5,41 @@ import { Button } from '@/components/button';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { LoginSchema, Login } from '@/lib/types';
-import { login } from '@/actions/login';
+import { Reset, ResetSchema } from '@/lib/types';
+import { reset } from '@/actions/reset';
 
-import { InputAdornment, TextField } from '@mui/material';
-import { EyeIcon } from '@heroicons/react/24/outline';
+import { TextField } from '@mui/material';
 import { FormStatus } from '@/components/form-status/form-status';
 
-import { useSearchParams } from 'next/navigation';
 import { useState, useTransition } from 'react';
-import Link from 'next/link';
 
-export const LoginForm = () => {
-  const searchParams = useSearchParams();
-  const urlError =
-    searchParams.get('error') === 'OAuthAccountNotLinked'
-      ? 'Email already in use with a different provider'
-      : '';
-
+export const ResetForm = () => {
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
   const [isPending, startTransition] = useTransition();
   const {
     control,
-    reset,
     handleSubmit,
-    clearErrors,
     formState: { errors },
-  } = useForm<Login>({
-    resolver: zodResolver(LoginSchema),
+  } = useForm<Reset>({
+    resolver: zodResolver(ResetSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
-  const onSubmit = async (formData: Login) => {
+  const onSubmit = async (formData: Reset) => {
     setError('');
     setSuccess('');
 
     startTransition(() => {
       // validate client-side
-      const result = LoginSchema.safeParse(formData);
+      const result = ResetSchema.safeParse(formData);
       if (!result.success) {
         setError(result.error.message);
         return;
       }
-      login(formData).then((data) => {
+      reset(formData).then((data) => {
         setError(data?.error);
         setSuccess(data?.success);
       });
@@ -81,34 +69,7 @@ export const LoginForm = () => {
         )}
       />
       {errors.email && <em>{errors.email.message}</em>}
-      <Controller
-        control={control}
-        name="password"
-        render={({ field }) => (
-          <TextField
-            {...field}
-            disabled={isPending}
-            margin="normal"
-            id="password"
-            name="password"
-            type="password"
-            aria-label="Password"
-            fullWidth
-            aria-required
-            label="Password"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="start">
-                  <EyeIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-        )}
-      />
-      {errors.password && <em>{errors.password.message}</em>}
-      <Link href="/auth/reset">Forgot password?</Link>
-      <FormStatus status="error" message={error || urlError} />
+      <FormStatus status="error" message={error} />
       <FormStatus status="success" message={success} />
       <Button
         disabled={isPending}
@@ -116,7 +77,7 @@ export const LoginForm = () => {
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
         fullWidth>
-        Sign In
+        Send reset email
       </Button>
     </form>
   );
