@@ -7,6 +7,7 @@ enum Difficulty {
   pro = 'pro',
 }
 
+// TODO reconcile with lib/types
 export type Recipe = {
   id: string;
   authorId: string;
