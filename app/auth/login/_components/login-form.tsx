@@ -23,6 +23,7 @@ export const LoginForm = () => {
       ? 'Email already in use with a different provider'
       : '';
 
+  const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>('');
   const [success, setSuccess] = useState<string | undefined>('');
   const [isPending, startTransition] = useTransition();
@@ -51,63 +52,102 @@ export const LoginForm = () => {
         setError(result.error.message);
         return;
       }
-      login(formData).then((data) => {
-        setError(data?.error);
-        setSuccess(data?.success);
-      });
+      login(formData)
+        .then((data) => {
+          if (data?.error) {
+            reset();
+            setError(data.error);
+          }
+
+          if (data?.success) {
+            reset();
+            setSuccess(data.success);
+          }
+
+          if (data?.twoFactor) {
+            setShowTwoFactor(true);
+          }
+        })
+        .catch((error) => {
+          setError(`Something went wrong: ${error}`);
+        });
     });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        control={control}
-        name="email"
-        render={({ field }) => (
-          <TextField
-            {...field}
-            disabled={isPending}
-            margin="normal"
-            id="email"
+      {showTwoFactor ? (
+        <Controller
+          control={control}
+          name="code"
+          render={({ field }) => (
+            <TextField
+              {...field}
+              disabled={isPending}
+              margin="normal"
+              id="code"
+              name="code"
+              aria-label="Two Factor Code"
+              fullWidth
+              autoFocus
+              aria-required
+              placeholder="123456"
+              label="Two Factor Code"
+            />
+          )}
+        />
+      ) : (
+        <>
+          <Controller
+            control={control}
             name="email"
-            aria-label="Email Address"
-            fullWidth
-            autoFocus
-            aria-required
-            placeholder="example@example.com"
-            type="email"
-            label="Email"
+            render={({ field }) => (
+              <TextField
+                {...field}
+                disabled={isPending}
+                margin="normal"
+                id="email"
+                name="email"
+                aria-label="Email Address"
+                fullWidth
+                autoFocus
+                aria-required
+                placeholder="example@example.com"
+                type="email"
+                label="Email"
+              />
+            )}
           />
-        )}
-      />
-      {errors.email && <em>{errors.email.message}</em>}
-      <Controller
-        control={control}
-        name="password"
-        render={({ field }) => (
-          <TextField
-            {...field}
-            disabled={isPending}
-            margin="normal"
-            id="password"
+          {errors.email && <em>{errors.email.message}</em>}
+          <Controller
+            control={control}
             name="password"
-            type="password"
-            aria-label="Password"
-            fullWidth
-            aria-required
-            label="Password"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="start">
-                  <EyeIcon />
-                </InputAdornment>
-              ),
-            }}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                disabled={isPending}
+                margin="normal"
+                id="password"
+                name="password"
+                type="password"
+                aria-label="Password"
+                fullWidth
+                aria-required
+                label="Password"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="start">
+                      <EyeIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            )}
           />
-        )}
-      />
-      {errors.password && <em>{errors.password.message}</em>}
-      <Link href="/auth/reset">Forgot password?</Link>
+          {errors.password && <em>{errors.password.message}</em>}
+          <Link href="/auth/reset">Forgot password?</Link>
+        </>
+      )}
       <FormStatus status="error" message={error || urlError} />
       <FormStatus status="success" message={success} />
       <Button
@@ -116,7 +156,7 @@ export const LoginForm = () => {
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
         fullWidth>
-        Sign In
+        {showTwoFactor ? 'Confirm' : 'Sign In'}
       </Button>
     </form>
   );
