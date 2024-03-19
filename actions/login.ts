@@ -7,6 +7,9 @@ import { sendVerificationEmail, sendTwoFactorEmail } from '@/lib/mail';
 import { LoginSchema } from '@/lib/types';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { AuthError } from 'next-auth';
+import { getTwoFactorTokenByEmail } from '@/data/two-factor-token';
+import { db } from '@/lib/db';
+import { getTwoFactorConfirmationByUserId } from '@/data/two-factor-confirmation';
 
 export const login = async (login: unknown) => {
   const validatedFields = LoginSchema.safeParse(login);
@@ -26,7 +29,7 @@ export const login = async (login: unknown) => {
       error: errorMessage,
     };
   }
-  const { email, password } = validatedFields.data;
+  const { email, password, code } = validatedFields.data;
 
   const existingUser = await getUserByEmail(email);
   if (!existingUser || !existingUser.email || !existingUser.password) {
@@ -40,10 +43,42 @@ export const login = async (login: unknown) => {
   }
 
   if (existingUser.isTwoFactorEnabled && existingUser.email) {
-    const twoFactorToken = await generateTwoFactorToken(existingUser.email);
-    await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token);
+    if (code) {
+      const existingToken = await getTwoFactorTokenByEmail(existingUser.email);
 
-    return { twoFactor: true };
+      if (!existingToken) {
+        return { error: 'Invalid input!' };
+      }
+
+      if (code !== existingToken?.token) {
+        return { error: 'Invalid input!' };
+      }
+
+      const hasExpired = new Date(existingToken.expires) < new Date();
+
+      if (hasExpired) {
+        return { error: 'Token has expired. Try again' };
+      }
+
+      await db.twoFactorToken.delete({
+        where: { id: existingToken.id },
+      });
+
+      const existingConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
+      if (existingConfirmation) {
+        await db.twoFactorConfirmation.delete({
+          where: { id: existingConfirmation.id },
+        });
+      }
+      await db.twoFactorConfirmation.create({
+        data: { userId: existingUser.id },
+      });
+    } else {
+      const twoFactorToken = await generateTwoFactorToken(existingUser.email);
+      await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token);
+
+      return { twoFactor: true };
+    }
   }
 
   try {
