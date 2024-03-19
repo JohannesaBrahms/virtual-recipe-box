@@ -5,6 +5,8 @@ import { db } from '@/lib/db';
 import authConfig from '@/auth.config';
 import { getUserById } from '@/data/user';
 
+import { getTwoFactorConfirmationByUserId } from '@/data/two-factor-confirmation';
+
 declare module '@auth/core/types' {
   interface User {
     role: 'ADMIN' | 'USER';
@@ -51,7 +53,19 @@ export const {
       // prevent sign in w/o email verification
       if (!existingUser?.emailVerified) return false;
 
-      // TODO: Add 2FA check
+      if (existingUser.isTwoFactorEnabled) {
+        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
+        console.log({ twoFactorConfirmation: twoFactorConfirmation });
+
+        if (!twoFactorConfirmation) {
+          return false;
+        }
+
+        // Delete 2F confirmation for next sign in
+        await db.twoFactorConfirmation.delete({
+          where: { id: twoFactorConfirmation.id },
+        });
+      }
 
       return true;
     },
