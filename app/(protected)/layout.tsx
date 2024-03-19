@@ -2,7 +2,11 @@ import NavBar from './_components/navbar';
 import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/auth';
 
-const ProtectedLayout = async ({ children }: any) => {
+interface ProtectedLayoutProps {
+  children: React.ReactNode;
+}
+
+const ProtectedLayout = async ({ children }: ProtectedLayoutProps) => {
   const session = await auth();
   return (
     <SessionProvider session={session}>
