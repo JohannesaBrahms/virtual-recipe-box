@@ -55,7 +55,6 @@ export const {
 
       if (existingUser.isTwoFactorEnabled) {
         const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
-        console.log({ twoFactorConfirmation: twoFactorConfirmation });
 
         if (!twoFactorConfirmation) {
           return false;

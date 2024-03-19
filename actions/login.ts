@@ -2,11 +2,11 @@
 
 import { signIn } from '@/auth';
 import { getUserByEmail } from '@/data/user';
-import { generateVerificationToken } from '@/lib/tokens';
-import { LoginSchema, Login } from '@/lib/types';
+import { generateVerificationToken, generateTwoFactorToken } from '@/lib/tokens';
+import { sendVerificationEmail, sendTwoFactorEmail } from '@/lib/mail';
+import { LoginSchema } from '@/lib/types';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { AuthError } from 'next-auth';
-import { sendVerificationEmail } from '@/lib/mail';
 
 export const login = async (login: unknown) => {
   const validatedFields = LoginSchema.safeParse(login);
@@ -37,6 +37,13 @@ export const login = async (login: unknown) => {
     await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
     return { success: 'Confirmation email sent!' };
+  }
+
+  if (existingUser.isTwoFactorEnabled && existingUser.email) {
+    const twoFactorToken = await generateTwoFactorToken(existingUser.email);
+    await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token);
+
+    return { twoFactor: true };
   }
 
   try {
