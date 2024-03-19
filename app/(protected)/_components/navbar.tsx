@@ -1,20 +1,18 @@
+'use client';
+
 import { Divider } from '@mui/material';
 import styles from '@/app/header.module.css';
 import { Button } from '@/components/button';
-import { signOut } from '@/auth';
+import { logout } from '@/actions/logout';
 
 export default function NavBar() {
+  const onClick = () => {
+    logout();
+  };
   return (
     <nav>
       <div className={styles.container}>
-        <form
-          action={async () => {
-            'use server';
-
-            await signOut();
-          }}>
-          <Button type="submit">Sign out</Button>
-        </form>
+        <Button onClick={onClick}>Sign out</Button>
       </div>
       <Divider />
     </nav>
