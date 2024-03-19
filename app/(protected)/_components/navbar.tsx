@@ -4,6 +4,7 @@ import { Divider } from '@mui/material';
 import styles from '@/app/header.module.css';
 import { Button } from '@/components/button';
 import { logout } from '@/actions/logout';
+import { AccountMenu } from '@/components/auth/account-menu';
 
 export default function NavBar() {
   const onClick = () => {
@@ -12,7 +13,8 @@ export default function NavBar() {
   return (
     <nav>
       <div className={styles.container}>
-        <Button onClick={onClick}>Sign out</Button>
+        <AccountMenu />
+        {/* <Button onClick={onClick}>Sign out</Button> */}
       </div>
       <Divider />
     </nav>
