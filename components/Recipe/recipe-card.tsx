@@ -53,7 +53,7 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
   return (
     <Card>
       <CardHeader
-        avatar={<Avatar tooltip={<p>{recipe.authorId}</p>} tooltipPosition="top-end" />}
+        avatar={<Avatar tooltip={<p>{recipe.userId}</p>} tooltipPosition="top-end" />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
