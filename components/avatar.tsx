@@ -4,18 +4,20 @@ import { Box, IconButton, Avatar as MuiAvatar, Tooltip } from '@mui/material';
 import { red } from '@mui/material/colors';
 
 interface AvatarProps {
-  open?: Boolean;
+  imageSrc?: string | null | undefined;
   tooltip?: React.ReactNode;
   tooltipPosition?: 'top-end' | 'bottom-start';
   children?: React.ReactNode;
+  open?: Boolean;
   onClick?: (e: any) => void;
 }
 
 export default function Avatar({
-  open,
+  imageSrc,
   tooltip,
   tooltipPosition = 'bottom-start',
   children,
+  open,
   onClick,
 }: AvatarProps) {
   return (
@@ -28,7 +30,9 @@ export default function Avatar({
           aria-controls={open ? 'account-menu' : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}>
-          <MuiAvatar sx={{ width: 32, height: 32, bgcolor: red[500] }}>{children}</MuiAvatar>
+          <MuiAvatar src={imageSrc || ''} sx={{ width: 32, height: 32, bgcolor: red[500] }}>
+            {children}
+          </MuiAvatar>
         </IconButton>
       </Tooltip>
     </Box>
