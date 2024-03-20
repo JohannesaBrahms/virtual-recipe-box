@@ -7,9 +7,9 @@ export default function Header() {
   return (
     <>
       <div className={styles.container}>
-        <Button href="/" label="Home" />
-        <Button href="/recipes" label="Browse" />
-        <Button href="/login" label="Sign in" />
+        <Button href="/">Home</Button>
+        <Button href="/recipes">Browse</Button>
+        <Button href="/login">Sign in</Button>
         <ModeSwitch />
       </div>
       <Divider />

@@ -17,7 +17,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState } from 'react';
 import { Recipe } from '@/app/@types/recipe';
 import { useRouter } from 'next/navigation';
-import UserAvatar from '@/components/user-avatar';
+import Avatar from '@/components/avatar';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -53,7 +53,7 @@ export default function RecipeCard({ recipe }: { recipe: Recipe }) {
   return (
     <Card>
       <CardHeader
-        avatar={<UserAvatar />}
+        avatar={<Avatar tooltip={<p>{recipe.userId}</p>} tooltipPosition="top-end" />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
