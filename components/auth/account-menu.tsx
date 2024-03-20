@@ -1,11 +1,11 @@
 'use client';
 
 import { useCurrentUser } from '@/hooks/use-current-user';
-import { Box, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
+import { Divider, ListItemIcon, Menu, MenuItem, Typography } from '@mui/material';
 import { useState } from 'react';
 import { LogoutButton } from '@/components/auth/logout-button';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FaCog, FaSignOutAlt } from 'react-icons/fa';
+import Avatar from '@/components/avatar';
 
 export const AccountMenu = () => {
   const user = useCurrentUser();
@@ -21,19 +21,17 @@ export const AccountMenu = () => {
 
   return (
     <>
-      <Box>
-        <Tooltip title="Account settings">
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}>
-            <Avatar sx={{ width: 32, height: 32 }}>{user?.name?.charAt(0)}</Avatar>
-          </IconButton>
-        </Tooltip>
-      </Box>
+      <Avatar
+        open={open}
+        tooltip={
+          <>
+            <Typography color="inherit">{user?.name}</Typography>
+            <b>{'Account settings'}</b>
+          </>
+        }
+        onClick={(e) => handleClick(e)}>
+        {user?.name?.charAt(0)}
+      </Avatar>
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -47,6 +45,16 @@ export const AccountMenu = () => {
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
+        <MenuItem onClick={handleClose}>
+          <Avatar /> My account
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <FaCog fontSize="small" />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
         <LogoutButton>
           <MenuItem onClick={handleClose}>
             <ListItemIcon>
