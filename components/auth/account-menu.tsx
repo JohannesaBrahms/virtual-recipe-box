@@ -10,6 +10,11 @@ import Avatar from '@/components/avatar';
 export const AccountMenu = () => {
   const user = useCurrentUser();
 
+  const userInitials = user?.name
+    ?.match(/\b(\w)/g)
+    ?.join('')
+    .toUpperCase();
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -30,7 +35,7 @@ export const AccountMenu = () => {
           </>
         }
         onClick={(e) => handleClick(e)}>
-        {user?.name?.charAt(0)}
+        {userInitials}
       </Avatar>
       <Menu
         anchorEl={anchorEl}
