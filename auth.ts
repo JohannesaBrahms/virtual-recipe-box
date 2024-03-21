@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { type DefaultSession } from 'next-auth';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { db } from '@/lib/db';
 
@@ -6,19 +6,20 @@ import authConfig from '@/auth.config';
 import { getUserById } from '@/data/user';
 
 import { getTwoFactorConfirmationByUserId } from '@/data/two-factor-confirmation';
+import { UserRole } from '@prisma/client';
 
 declare module '@auth/core/types' {
-  interface User {
-    role: 'ADMIN' | 'USER';
-  }
+  export type ExtendedUser = DefaultSession['user'] & {
+    role: UserRole;
+  };
   interface Session {
-    user: User;
+    user: ExtendedUser;
   }
 }
 
 declare module '@auth/core/jwt' {
   interface JWT {
-    role: 'ADMIN' | 'USER';
+    role: UserRole;
   }
 }
 
