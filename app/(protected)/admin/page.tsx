@@ -1,15 +1,19 @@
 'use client';
 
 import { CardWrapper } from '@/components/auth/card-wrapper/card-wrapper';
-import { useCurrentRole } from '@/hooks/use-current-role';
 import styles from './page.module.css';
+import { RoleGate } from './_components/role-gate';
+import { FormStatus } from '@/components/form-status/form-status';
+import { UserRole } from '@prisma/client';
 
 const AdminPage = () => {
-  const role = useCurrentRole();
   return (
     <div className={styles.container}>
-      <div>Admin Page</div>
-      <div>Current role: {role}</div>
+      <CardWrapper headerLabel="Admin" backButtonHref="" backButtonLabel="">
+        <RoleGate allowedRole={UserRole.ADMIN}>
+          <FormStatus status="success" message="You are allowed to see this content!" />
+        </RoleGate>
+      </CardWrapper>
     </div>
   );
 };
