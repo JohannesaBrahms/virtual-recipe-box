@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material';
 import styles from './header.module.css';
 
 interface HeaderProps {
@@ -8,8 +7,7 @@ interface HeaderProps {
 export const Header = ({ label }: HeaderProps) => {
   return (
     <div className={styles.container}>
-      <Typography variant="h3">Auth</Typography>
-      <p>{label}</p>
+      <p className={styles.p}>{label}</p>
     </div>
   );
 };
