@@ -7,8 +7,19 @@ import { FormStatus } from '@/components/form-status/form-status';
 import { UserRole } from '@prisma/client';
 import { Button } from '@/components/button';
 import { toast } from 'sonner';
+import { admin } from '@/actions/admin';
 
 const AdminPage = () => {
+  const onServerActionClick = () => {
+    admin().then((data) => {
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        toast.success(data.success);
+      }
+    });
+  };
+
   const onApiRouteClick = () => {
     fetch('/api/admin').then((response) => {
       if (response.ok) {
@@ -34,7 +45,9 @@ const AdminPage = () => {
           </div>
           <div className={styles.section}>
             <p>Admin-only Server Action</p>
-            <Button variant="contained">Click to test</Button>
+            <Button variant="contained" onClick={onServerActionClick}>
+              Click to test
+            </Button>
           </div>
         </>
       </CardWrapper>
