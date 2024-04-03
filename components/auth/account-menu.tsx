@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { LogoutButton } from '@/components/auth/logout-button';
 import { FaCog, FaSignOutAlt } from 'react-icons/fa';
 import Avatar from '@/components/avatar';
+import Link from '@/components/link';
 
 export const AccountMenu = () => {
   const user = useCurrentUser();
@@ -20,6 +21,7 @@ export const AccountMenu = () => {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -54,7 +56,7 @@ export const AccountMenu = () => {
           <Avatar /> My account
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem component={Link} href="/settings" onClick={handleClose}>
           <ListItemIcon>
             <FaCog fontSize="small" />
           </ListItemIcon>
