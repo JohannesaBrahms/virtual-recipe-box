@@ -7,6 +7,8 @@ import theme from '@/utils/theme';
 import Copyright from '@/components/copyright';
 import { Container } from '@mui/material';
 
+import { Toaster } from 'sonner';
+
 export const metadata: Metadata = {
   title: 'Virtual Recipe Box',
   description: 'Recipe Management and Sharing Platform',
@@ -25,6 +27,7 @@ export default function RootLayout({
             {/* CssBaseline kickstarts an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             <Container>
+              <Toaster position="bottom-right" />
               {children}
               <Copyright />
             </Container>

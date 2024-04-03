@@ -6,14 +6,15 @@ import { RoleGate } from './_components/role-gate';
 import { FormStatus } from '@/components/form-status/form-status';
 import { UserRole } from '@prisma/client';
 import { Button } from '@/components/button';
+import { toast } from 'sonner';
 
 const AdminPage = () => {
   const onApiRouteClick = () => {
     fetch('/api/admin').then((response) => {
       if (response.ok) {
-        console.log('okay');
+        toast.success('Allowed API Route!');
       } else {
-        console.log('forbidden');
+        toast.error('Forbidden API Route!');
       }
     });
   };
