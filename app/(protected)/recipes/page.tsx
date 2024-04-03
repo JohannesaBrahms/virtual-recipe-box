@@ -21,9 +21,6 @@ const RecipesPage = async ({
       <Button href="/recipes/create" variant="contained">
         Create New Recipe
       </Button>
-      <Typography variant="h3" alignItems={'center'}>
-        Recipes
-      </Typography>
       <Suspense
         fallback={
           <Grid container spacing={3}>
